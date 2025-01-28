@@ -32,6 +32,15 @@ public class Exercise1 {
         // Print first names in userStream for users that have IDs from number stream
         // TODO: Write code here
 
+        /*
+         * Difference Between Map and FlatMap 
+         * If Right Hand Side of a Map is Value then we can Use Map. 
+         * If right hand side of a map is another Stream then we do FlatMap
+         */
+        StreamSources.userStream()
+                    .filter(user -> StreamSources.intNumbersStream().anyMatch(id -> user.getId() == id))
+                    .forEach(System.out::println);
+
     }
 
 }

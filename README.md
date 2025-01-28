@@ -136,3 +136,21 @@ public Mono<User> getuserDetails(@PathVariable String userId) {
 - flatMap
 - findFirst 
 
+
+## Design Patterns 
+
+### Iterator Pattern 
+
+Iterator Pattern is a Behavioral Pattern that lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.).
+
+Iterator -> Consumer
+
+> Checkout the Additional Video on Iterator Pattern
+
+### Observer Pattern
+
+Observer Pattern is a Behavioral Pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they're observing.
+
+Subject maintains a list of its dependents, called observers, and notifies them of a state change, usually by calling one of their methods.
+
+![alt text](images/image1.png)
