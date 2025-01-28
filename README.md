@@ -154,3 +154,48 @@ Observer Pattern is a Behavioral Pattern that lets you define a subscription mec
 Subject maintains a list of its dependents, called observers, and notifies them of a state change, usually by calling one of their methods.
 
 ![alt text](images/image1.png)
+
+## Two Patterns 
+
+![alt text](images/image.png)
+
+Iterator Pattern is about Pulling Data
+Observer Pattern is about Pushing Data
+
+### When to use Which Pattern
+
+```
+Iterator Pattern
+myList.forEach(item -> {
+    // Do Something
+});
+
+Observer Pattern
+Listen to Mouse Clicks and Print Each Event 
+clicksChannel.addObserver(event -> System.out.println(event));
+```
+
+### Chain Operations
+
+```
+myList.filter(item -> item != null)
+    .forEach(item -> System.out.println(item));
+
+clicksChannel.filter(event -> event != null)
+    .forEach(event -> System.out.println(event));
+```
+
+### Reactive Programming
+
+```java
+clicksChannel
+    .filter(event -> event != null)
+    .subscribe(event -> System.out.println(event));
+```
+
+## Assembly Line Analogy
+
+- Assembly Line
+    - Each Worker does a specific task
+    - Each Worker is not waiting for the previous worker to finish
+    - Each Worker is not waiting for the next worker to start
