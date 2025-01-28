@@ -197,5 +197,5 @@ clicksChannel
 
 - Assembly Line
     - Each Worker does a specific task
-    - Each Worker is not waiting for the previous worker to finish
-    - Each Worker is not waiting for the next worker to start
+    - Items come over time
+ 
