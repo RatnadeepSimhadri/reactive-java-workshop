@@ -1,0 +1,138 @@
+# What is Reactive Programming
+
+## Traditional Use cases of Reactive Programming
+
+- User Events
+    - When user Clicks on a Button
+        - (We Wire in a callback)
+    - When I/O Response
+
+React to Something. When User Clicks this button, run this function
+
+> Why do we care about Reactive Programming in Server Side Java Development ?
+
+### Server Side Web Development Flow
+
+- Request Comes in
+- We do processing
+- We return the response
+
+Each Request by itself is not reactive. Its Synchronous
+
+## A Case for Reactive Programming
+
+Modern Application Development Involves
+
+- High Data Scale
+- High Usage Scale
+- Cloud Based Costs
+
+> How do we Scale up ?
+
+- Vertical Scaling
+- Horizontal Scaling
+
+Before Scaling Optimizing Code for Resource Utilization
+
+> Problematic Code
+
+```java
+@GetMapping("/users/{userId}")
+/*
+ * Unnecessarily Sequential Calls
+ */
+public User getuserDetails(@PathVariable String userId) {
+    User user = userService.getUser(userId); // Blocking Servlet Thread
+    UserPreferences preferences = userPreferencesService.getPreferences(userId); // Blocking Servlet Thread
+    user.setPreferences(preferences);
+    return user;
+}
+```
+
+![img.png](images/img.png)
+
+> Traditional Way of REST Services would result in Thread Idling and Cost of Wasted Hardware
+
+## Spoilt Backend Developers
+
+> Don't Usually think about Async Programming
+
+- It's a Single Request
+- Multiple Simultaneous Users are abstracted out
+- Delays abstracted out
+- We pay with Sequential Blocking Operations
+- We pay with Idling threads
+
+### Leverage Concurrency APIs in Java : CompletableFuture
+
+- Call UserService
+- Call UserProfileService in parallel
+- When Both return Merge the Data Structures
+- Return the Merged Object
+
+```java
+import java.util.concurrent.CompletableFuture;
+
+
+@GetMapping("/users/{userId}")
+/*
+ * Unnecessarily Sequential Calls
+ */
+public User getuserDetails(@PathVariable String userId) {
+    CompletableFuture<User> userAsync = CompletableFuture.supplyAsync(() -> userService.getUser(userId));
+    CompletableFuture<UserPreferences> preferencesAsync = CompletableFuture.supplyAsync(
+            () -> userPreferencesService.getPreferences(userId));
+
+    CompletableFuture<Void> bothFutures = CompletableFuture.allOf(userAsync, preferencesAsync);
+
+    // Here we have to wait for Futures to Resolve to Return 
+    bothFutures.join();
+    User user = userAsync.join();
+    UserPreferences preferences = preferencesAsync.join();
+    user.setPreferences(preferences);
+    return user;
+}
+```
+
+## Reactive Programming
+
+```java
+import reactor.core.publisher.Mono;
+
+
+@GetMapping("/users/{userId}")
+/*
+ * Unnecessarily Sequential Calls
+ */
+public Mono<User> getuserDetails(@PathVariable String userId) {
+    return userService.getUser(userId)
+            .zipWith(userPreferencesService.getPreferences(userId))
+            .map(tuple -> {
+                User user = tuple.getT1();
+                UserPreferences prefs = tuple.getT2();
+                user.setPreferences(pref);
+                return user;
+            });
+}
+```
+
+- Much Simpler than manual concurrent way.
+- Few reusable declarative functions
+- Combine and reuse in powerful ways
+
+## Java Collections Streams Detour
+
+### Java Streams
+
+- Represent a Sequence of Data
+- Focus on Computations
+- vs Collections which focus on Storage
+- Internal Iteration
+
+#### Stream Operation
+
+- map
+- filter
+- flatMap
+- findFirst 
+
