@@ -283,3 +283,11 @@ Netty is a Non Blocking Server. It's Reactive all the way. It even handles the H
 
 ### Don't forget to Chain the Operators 
 ![alt text](images/image3.png)
+
+
+## Error Handling 
+
+- Error is a Terminal Event 
+- Original Sequence does not continue
+- Calls `onError` of the subscribe method
+
