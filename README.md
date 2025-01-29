@@ -227,3 +227,23 @@ Use Interfaces to leverage the Reactive Programming Model
 Flux represents 0 to N items
 Mono represents 0 or 1 item
 
+## Mono Vs Flux 
+
+- Mono
+    - 0 or 1 item
+    - Success or Error
+
+- Flux
+  - 0 to N items
+  - Success or Error
+
+## What's Coming ? 
+
+Both Flux and Mono have completion events. 
+
+- An Item 
+- A Complete Event 
+- A Failure Event
+
+Complete Event and Failure Event are Terminal Events. It means that the Stream is Closed
+
