@@ -276,3 +276,10 @@ Netty is a Non Blocking Server. It's Reactive all the way. It even handles the H
 - Merge: Combine the values from multiple sources
 - Zip: Combine the values from multiple sources
 - CombineLatest: Combine the latest values from multiple sources
+
+
+
+## Return Values 
+
+### Don't forget to Chain the Operators 
+![alt text](images/image3.png)
