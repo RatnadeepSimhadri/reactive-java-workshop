@@ -201,3 +201,28 @@ clicksChannel
  
 
  ## How do access a list of published events 
+
+```
+List<Integer> list = ReactiveSources.intNumbersFlux().toStream().toList(); // This is a Blocking Operation
+System.out.println(list);
+
+```
+
+## Reactive Programming in Java
+
+### Three Abstractions 
+
+- Publisher
+- Subscriber
+- Subscription
+
+Use Interfaces to leverage the Reactive Programming Model
+
+### What we will Use 
+
+- Project Reactor
+    - Mono
+    - Flux
+
+Flux represents 0 to N items
+Mono represents 0 or 1 item
