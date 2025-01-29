@@ -247,3 +247,32 @@ Both Flux and Mono have completion events.
 
 Complete Event and Failure Event are Terminal Events. It means that the Stream is Closed
 
+
+## Whats the Point ? 
+
+> mono.blok() is a Blocking Operation
+
+### Reactive all the way 
+
+In the restaurant analogy.  Customer -> Cahier -> Cook 
+
+The ideal place the it should be blocking is the Customer and no on else. Because, Maybe the Cashier can attend to other pickup orders while the Customer is waiting for the order to be prepared. 
+
+Netty is a Non Blocking Server. It's Reactive all the way. It even handles the HTTP Requests reactively. Kinda like Event Loop in NodeJS
+
+> Netty Servers can take 100K requests per second.
+
+![alt text](images/image2.png)
+
+
+## Operators
+
+- Take: Take the first n elements
+- Skip: Skip the first n elements
+- Filter: Filter the values
+- Map: Transform the values
+- FlatMap: Transform the values
+- ConcatMap: Preserve Order
+- Merge: Combine the values from multiple sources
+- Zip: Combine the values from multiple sources
+- CombineLatest: Combine the latest values from multiple sources
