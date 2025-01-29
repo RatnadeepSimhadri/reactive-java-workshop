@@ -291,3 +291,29 @@ Netty is a Non Blocking Server. It's Reactive all the way. It even handles the H
 - Original Sequence does not continue
 - Calls `onError` of the subscribe method
 
+
+### `doOnError` Operator
+
+````
+Flux.just(1,2,3, new RuntimeException("Error"))
+    .doOnError(e -> System.out.println("Error Occured"))
+    .subscribe(System.out::println);
+```
+
+``` 
+doFinally
+
+Flux.just(1,2,3, new RuntimeException("Error"))
+    .doFinally(signalType -> {
+        if (signalType == SignalType.ERROR) {
+            System.out.println("Error Occurred");
+        } else if (signalType == SignalType.CANCEL) {
+            System.out.println("Cancelled");
+        } else if (signalType == SignalType.COMPLETION) {
+            System.out.println("Completed");
+        }
+    })
+    .subscribe(System.out::println);
+
+```
+
