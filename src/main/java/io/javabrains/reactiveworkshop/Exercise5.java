@@ -7,6 +7,7 @@ import reactor.core.publisher.BaseSubscriber;
 
 public class Exercise5 {
 
+    @SuppressWarnings("rawtypes")
     public static void main(String[] args) throws IOException {
 
         // Use ReactiveSources.intNumberMono() and ReactiveSources.userMono()
