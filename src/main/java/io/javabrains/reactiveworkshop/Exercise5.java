@@ -7,7 +7,7 @@ import reactor.core.publisher.BaseSubscriber;
 
 public class Exercise5 {
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) throws IOException {
 
         // Use ReactiveSources.intNumberMono() and ReactiveSources.userMono()
@@ -18,7 +18,6 @@ public class Exercise5 {
         //     err -> System.out.println(err.getMessage()), () -> System.out.println("Completed"));
 
         // Subscribe to a flux using an implementation of BaseSubscriber
-        // TODO: Write code here
    
         ReactiveSources.intNumbersFlux().subscribe(new MySubscriber());
 
